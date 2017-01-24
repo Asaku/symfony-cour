@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -30,6 +31,7 @@ class PostType extends AbstractType
                 'class' => 'AppBundle:Category',
                 'choice_label' => 'title',
             ))
+            ->add('files', FileType::class)
         ;
     }
     

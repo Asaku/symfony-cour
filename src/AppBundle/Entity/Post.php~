@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -72,6 +73,14 @@ class Post
      */
     private $categories;
 
+    private $files;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Upload", cascade={"remove", "persist"})
+     */
+    private $uploads;
+
     /**
      * Post constructor.
      */
@@ -79,6 +88,7 @@ class Post
     {
         $this->dateCreated = new \DateTime();
         $this->dateUpdate = new \DateTime();
+        $this->categories = new ArrayCollection();
     }
 
 
@@ -243,5 +253,38 @@ class Post
     {
         $this->dateUpdate = new \DateTime();
     }
-}
 
+    /**
+     * Add category
+     *
+     * @param \AppBundle\Entity\Category $category
+     *
+     * @return Post
+     */
+    public function addCategory(\AppBundle\Entity\Category $category)
+    {
+        $this->categories[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param \AppBundle\Entity\Category $category
+     */
+    public function removeCategory(\AppBundle\Entity\Category $category)
+    {
+        $this->categories->removeElement($category);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+}

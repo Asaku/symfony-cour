@@ -67,11 +67,18 @@ class Post
      */
     private $dateUpdate;
 
-
     /**
      * @ORM\ManyToMany(targetEntity="Category", cascade={"persist"})
      */
     private $categories;
+
+    public $files;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Upload", cascade={"remove", "persist"})
+     */
+    private $uploads;
 
     /**
      * Post constructor.
@@ -278,5 +285,39 @@ class Post
     public function getCategories()
     {
         return $this->categories;
+    }
+
+    /**
+     * Add upload
+     *
+     * @param \AppBundle\Entity\Upload $upload
+     *
+     * @return Post
+     */
+    public function addUpload(\AppBundle\Entity\Upload $upload)
+    {
+        $this->uploads[] = $upload;
+
+        return $this;
+    }
+
+    /**
+     * Remove upload
+     *
+     * @param \AppBundle\Entity\Upload $upload
+     */
+    public function removeUpload(\AppBundle\Entity\Upload $upload)
+    {
+        $this->uploads->removeElement($upload);
+    }
+
+    /**
+     * Get uploads
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUploads()
+    {
+        return $this->uploads;
     }
 }
