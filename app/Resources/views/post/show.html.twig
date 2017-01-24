@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Post</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ post.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ post.title }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ post.content }}</td>
+            </tr>
+            <tr>
+                <th>Public</th>
+                <td>{% if post.public %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ post.slug|capitalize }}</td>
+            </tr>
+            <tr>
+                <th>Datecreated</th>
+                <td>{{ post.dateCreated|date('d/m/Y') }}</td>
+            </tr>
+            <tr>
+                <th>Dateupdate</th>
+                <td>{{ post.dateUpdate|date('d/m/Y') }}</td>
+            </tr>
+        <tr>
+            <th>Categories</th>
+            {% for category in post.categories %}
+                <td>{{ category.title }}</td>
+            {% endfor %}
+        </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('post_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('post_edit', { 'id': post.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
