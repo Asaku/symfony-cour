@@ -10,4 +10,18 @@ namespace AppBundle\Repository;
  */
 class PostRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @return array
+     */
+    public function getSuperChien()
+    {
+        $q = $this->_em->createQueryBuilder()
+            ->select('post')
+            ->from('AppBundle:Post', 'post')
+            ;
+
+        $q->where('post.public = :active')->setParameter('active', true);
+
+        return $q->getQuery()->getResult();
+    }
 }

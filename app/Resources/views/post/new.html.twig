@@ -4,8 +4,8 @@
     <h1>Post creation</h1>
 
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+        {% include 'post/_form.html.twig' %}
+        <input type="submit" value="hahaha" class="btn btn-primary" />
     {{ form_end(form) }}
 
     <ul>

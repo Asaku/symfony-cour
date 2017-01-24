@@ -16,7 +16,9 @@ class PostType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
+            ->add('title', null, array(
+                'required' => false
+            ))
             ->add('content')
             ->add('public', CheckboxType::class,
                 array(

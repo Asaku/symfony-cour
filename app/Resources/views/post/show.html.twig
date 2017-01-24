@@ -1,5 +1,8 @@
 {% extends 'base.html.twig' %}
 
+
+{% render('AppBundle:') %}
+
 {% block body %}
     <h1>Post</h1>
 
@@ -11,7 +14,7 @@
             </tr>
             <tr>
                 <th>Title</th>
-                <td>{{ post.title }}</td>
+                <td>{{ post.title|transformationchien }}</td>
             </tr>
             <tr>
                 <th>Content</th>
