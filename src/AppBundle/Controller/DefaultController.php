@@ -19,8 +19,22 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $posts = $em->getRepository('AppBundle:Post')->getPagination($page, 2);
 
+        $maxPages = $posts->count();
+        if ($maxPages == 0)
+            $maxPages = 1;
+
+        $pagination = array(
+            'page' => $page,
+            'route' => 'homepage',
+            'pages_count' => ceil($maxPages / 2),
+            'route_params' => array()
+        );
+
         return $this->render('default/index.html.twig',
-            array('posts' => $posts,)
+            array(
+                'posts' => $posts,
+                'pagination' => $pagination
+                )
         );
     }
 
