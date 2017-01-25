@@ -6,7 +6,9 @@ use AppBundle\FileManager\FileManagerImage;
 use Doctrine\ORM\EntityNotFoundException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 
 class DefaultController extends Controller
@@ -53,5 +55,23 @@ class DefaultController extends Controller
         return $this->render('default/show.html.twig',
             array('post' => $post,)
         );
+    }
+
+    /**
+     * @Route("test/render-test", name="render_test")
+     */
+    public function renderTestAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $post = $em->getRepository('AppBundle:Post')->find(1);
+
+        if (!$post)
+            throw new EntityNotFoundException('haha');
+
+        $html = $this->render('default/show.html.twig',
+            array('post' => $post,)
+        );
+
+        return new Response($html);
     }
 }
