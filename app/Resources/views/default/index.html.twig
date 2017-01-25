@@ -9,6 +9,7 @@
                     <img src="{{ asset(image.path) }}" alt="{{ image.alt }}" width="200px">
                 {% endfor %}
                 <p>{{ post.content }}</p>
+                <a href="{{ path('article_display', {slug: post.slug}) }}">Voir +</a>
             </article>
         {% endfor %}
     </div>

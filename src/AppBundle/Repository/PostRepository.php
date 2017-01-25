@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Repository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * PostRepository
@@ -13,15 +14,28 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
     /**
      * @return array
      */
-    public function getSuperChien()
+    public function getPagination($page, $maxperpage)
     {
         $q = $this->_em->createQueryBuilder()
             ->select('post')
             ->from('AppBundle:Post', 'post')
-            ;
+            ->where('post.public = :active')->setParameter('active', true);
 
-        $q->where('post.public = :active')->setParameter('active', true);
+        $q->setFirstResult(($page-1) * $maxperpage)->setMaxResults($maxperpage);
 
-        return $q->getQuery()->getResult();
+        $q->orderBy('post.id', 'DESC');
+
+        return new Paginator($q);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNb()
+    {
+        return $this->createQueryBuilder('p')
+            ->select('COUNT(p)')
+            ->getQuery()
+            ->getSingleScalarResult();
     }
 }
