@@ -36,7 +36,11 @@
             </tr>
             <tr>
                 <th>Images</th>
-                <td>{{ post.uploads|first }}</td>
+                <td>
+                    {% for file in post.uploads %}
+                        <img src="{{ asset(file.path) }}" alt="{{ file.alt }}" class="img-responsive">
+                    {% endfor %}
+                </td>
             </tr>
         <tr>
             <th>Categories</th>

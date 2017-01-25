@@ -49,7 +49,8 @@ class PostController extends Controller
             $uploads = $this->get('file.manager.image')->upload(
                 array($form->get('files')->getData()), 'post');
 
-            // persist img in db
+            foreach ($uploads->toArray() as $upload)
+                $post->addUpload($upload);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
