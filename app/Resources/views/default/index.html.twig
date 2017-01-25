@@ -2,9 +2,14 @@
 
 {% block body %}
     <div class="col-md-12">
-
-        {% for var in variables %}
-            {{ var.title }} <br/>
+        {% for post in posts %}
+            <article>
+                <h2>{{ post.title }}</h2>
+                {% for image in post.uploads %}
+                    <img src="{{ asset(image.path) }}" alt="{{ image.alt }}" width="200px">
+                {% endfor %}
+                <p>{{ post.content }}</p>
+            </article>
         {% endfor %}
     </div>
 {% endblock %}

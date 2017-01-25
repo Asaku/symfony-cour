@@ -16,12 +16,10 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $variables = $em->getRepository('AppBundle:Post')->getSuperChien();
-
-        $this->get('file.manager.image');
+        $posts = $em->getRepository('AppBundle:Post')->findByPublic(true);
 
         return $this->render('default/index.html.twig',
-            array('variables' => $variables,)
+            array('posts' => $posts,)
         );
     }
 }
