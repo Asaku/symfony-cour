@@ -14,12 +14,20 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
     /**
      * @return array
      */
-    public function getPagination($page, $maxperpage)
+    public function getPagination($page, $maxperpage, $category = null, $search = null)
     {
         $q = $this->_em->createQueryBuilder()
             ->select('post')
             ->from('AppBundle:Post', 'post')
             ->where('post.public = :active')->setParameter('active', true);
+
+        if ($category)
+            $q->innerJoin('post.categories', 'c', 'WITH', 'c.title = :title')
+                ->setParameter('title', $category);
+
+        if ($search)
+            $q->andWhere('post.title LIKE :search OR post.content LIKE :search')
+                ->setParameter('search', '%'.$search.'%');
 
         $q->setFirstResult(($page-1) * $maxperpage)->setMaxResults($maxperpage);
 

@@ -16,10 +16,13 @@ class DefaultController extends Controller
     /**
      * @Route("/{page}", name="homepage", requirements={"page": "\d+"})
      */
-    public function indexAction($page = 1)
+    public function indexAction($page = 1, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $posts = $em->getRepository('AppBundle:Post')->getPagination($page, 2);
+        $posts = $em->getRepository('AppBundle:Post')->getPagination(
+            $page, 5, $request->query->get('category'), $request->query->get('search')
+        );
+        $categories = $em->getRepository('AppBundle:Category')->findAll();
 
         $maxPages = $posts->count();
         if ($maxPages == 0)
@@ -35,7 +38,8 @@ class DefaultController extends Controller
         return $this->render('default/index.html.twig',
             array(
                 'posts' => $posts,
-                'pagination' => $pagination
+                'pagination' => $pagination,
+                'categories' => $categories
                 )
         );
     }

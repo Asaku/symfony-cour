@@ -10,9 +10,8 @@ class AppExtension extends \Twig_Extension
         );
     }
 
-    public function transformationChien($data)
+    public function transformationChien()
     {
-        die(dump($data));
         return 'chien';
     }
 
