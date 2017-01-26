@@ -1,5 +1,5 @@
 AppBundle\Entity\Post:
-    dummy_{1..10000}:
+    dummy_{1..100}:
         title: <name()>
         content: "Lorem Ipsum...."
         public: true
