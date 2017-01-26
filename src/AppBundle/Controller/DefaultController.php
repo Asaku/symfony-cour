@@ -14,9 +14,9 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/page-{page}", name="homepage")
+     * @Route("/{page}", name="homepage", requirements={"page": "\d+"})
      */
-    public function indexAction($page)
+    public function indexAction($page = 1)
     {
         $em = $this->getDoctrine()->getManager();
         $posts = $em->getRepository('AppBundle:Post')->getPagination($page, 2);
