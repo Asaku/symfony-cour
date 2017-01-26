@@ -1,14 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <meta charset="UTF-8" />
+        <meta charset="UTF-8" />
+        <title>BackOffice</title>
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+    {% stylesheets
+    '@AppBundle/Resources/public/adminlte/bootstrap/css/bootstrap.css'
+    '@AppBundle/Resources/public/adminlte/dist/css/AdminLTE.css'
+    '@AppBundle/Resources/public/adminlte/dist/css/skins/skin-black-light.css'
+    filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
 </head>
-<body>
-<style>
-    body {
-        background-color: red;
-    }
-</style>
+<body class="hold-transition skin-dark sidebar-mini">
 <div>
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
         {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
@@ -32,5 +40,13 @@
     {% block fos_user_content %}
     {% endblock fos_user_content %}
 </div>
+        {% javascripts
+                '@AppBundle/Resources/public/adminlte/plugins/jQuery/jquery-2.2.3.min.js'
+                '@AppBundle/Resources/public/adminlte/plugins/jQueryUI/jquery-ui.js'
+                '@AppBundle/Resources/public/adminlte/bootstrap/js/bootstrap.min.js'
+                '@AppBundle/Resources/public/adminlte/dist/js/app.js'
+        %}
+        <script src="{{ asset_url }}"></script>
+{% endjavascripts %}
 </body>
 </html>
