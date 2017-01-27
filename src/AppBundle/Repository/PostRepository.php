@@ -31,7 +31,7 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
 
         $q->setFirstResult(($page-1) * $maxperpage)->setMaxResults($maxperpage);
 
-        $q->orderBy('post.id', 'DESC');
+        $q->orderBy('post.dateCreated', 'DESC');
 
         return new Paginator($q);
     }

@@ -21,6 +21,7 @@ class DefaultController extends Controller
         $posts = $em->getRepository('AppBundle:Post')->getPagination(
             $page, 5, $request->query->get('category'), $request->query->get('search')
         );
+
         $categories = $em->getRepository('AppBundle:Category')->findAll();
 
         $maxPages = $posts->count();

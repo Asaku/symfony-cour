@@ -2,10 +2,11 @@
 
 {% block body %}
     <div class="col-md-12">
-        <form action="#" method="GET">
+        <form action="{{ path('homepage') }}" method="GET">
             <div class="form-group">
                 <label for="category">Categorie</label>
                 <select name="category" id="category">
+                    <option value=""></option>
                     {% for category in categories %}
                         <option value="{{ category.title }}">{{ category.title }}</option>
                     {% endfor %}
@@ -13,7 +14,7 @@
             </div>
             <div class="form-group">
                 <label for="search">Recherche</label>
-                <input type="text" name="search" id="search">
+                <input type="text" value="{{ app.request.get('search') }}" name="search" id="search">
             </div>
             <input type="submit">
         </form>
