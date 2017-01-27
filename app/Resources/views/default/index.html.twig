@@ -8,7 +8,11 @@
                 <select name="category" id="category">
                     <option value=""></option>
                     {% for category in categories %}
-                        <option value="{{ category.title }}">{{ category.title }}</option>
+                        <option value="{{ category.title }}"
+                            {% if app.request.get('category') == category.title %}
+                                selected
+                            {% endif %}
+                        >{{ category.title }}</option>
                     {% endfor %}
                 </select>
             </div>
