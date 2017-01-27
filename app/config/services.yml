@@ -20,12 +20,7 @@ services:
     file.manager.image:
         class: AppBundle\FileManager\FileManagerImage
 
-#    encoder.user:
-#        class: AppBundle\EventListener\EncoderUser
-#        tags:
-#            - { name: doctrine.event_listener, event: postPersist }
-#
-#    decoder.user:
-#        class: AppBundle\EventListener\EncoderUser
-#        tags:
-#            - { name: doctrine.event_listener, event: postPersist }
+    my.listener:
+        class: AppBundle\EventListener\ExampleListener
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }

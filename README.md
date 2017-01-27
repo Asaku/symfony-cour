@@ -9,3 +9,6 @@ Support de cours pour symfony 2/3
 http://slides.com/mbreton/clean-code-javascript
 http://github.com/ryanmcdermott/clean-code-javascript
 PHP Mess Detector
+
+## Theme for backoffice
+https://almsaeedstudio.com/themes/AdminLTE/index.html
