@@ -1,0 +1,4 @@
+AppBundle\Entity\Comment:
+    comment_{1..2000}:
+        content: <name()>
+        post: "@post_<numberBetween(1, 100)>"

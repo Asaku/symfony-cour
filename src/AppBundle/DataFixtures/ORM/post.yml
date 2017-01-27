@@ -1,6 +1,7 @@
 AppBundle\Entity\Post:
-    dummy_{1..100}:
+    post_{1..100}:
         title: <name()>
         content: "Lorem Ipsum...."
         public: true
+        categories: ["@category_<numberBetween(1, 50)>"]
 

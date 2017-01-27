@@ -2,7 +2,9 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Comment;
 use AppBundle\FileManager\FileManagerImage;
+use AppBundle\Form\CommentType;
 use Doctrine\ORM\EntityNotFoundException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -47,7 +49,7 @@ class DefaultController extends Controller
     /**
      * @Route("article/{slug}", name="article_display")
      */
-    public function articleAction($slug)
+    public function articleAction($slug, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $post = $em->getRepository('AppBundle:Post')->findOneBy(
@@ -56,8 +58,27 @@ class DefaultController extends Controller
         if (!$post)
             throw new EntityNotFoundException('haha');
 
+        $comments = $em->getRepository('AppBundle:Comment')->findBy(
+            array('post' => $post));
+
+        $comment = new Comment();
+        $commentForm = $this->createForm('AppBundle\Form\CommentType', $comment);
+        $commentForm->handleRequest($request);
+
+        if ($commentForm->isSubmitted() && $commentForm->isValid()) {
+            $comment->setPost($post);
+            $em->persist($comment);
+            $em->flush($comment);
+
+            return $this->redirectToRoute('article_display', array('slug' => $slug));
+        }
+
         return $this->render('default/show.html.twig',
-            array('post' => $post,)
+            array(
+                'post' => $post,
+                'comments' => $comments,
+                'commentForm' => $commentForm->createView()
+            )
         );
     }
 

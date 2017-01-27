@@ -8,9 +8,20 @@
                 <img src="{{ asset(image.path) }}" alt="{{ image.alt }}" width="200px">
             {% endfor %}
             <p>{{ post.content }}</p>
-            <p>
-                <input type="submit" id="test_ajax">
-            </p>
+            {% if app.user %}
+                {{ form_start(commentForm) }}
+                {{ form_widget(commentForm) }}
+                <input type="submit" value="Add" />
+                {{ form_end(commentForm) }}
+            {% endif %}
         </article>
+        {% for comment in comments %}
+            <article>
+                <h3>{{ comment.content }}</h3>
+                <time datetime="{{ comment.dateCreated|date('d/m/Y') }}">
+                    {{ comment.dateCreated|date('d/m/Y') }}
+                </time>
+            </article>
+        {% endfor %}
     </div>
 {% endblock %}

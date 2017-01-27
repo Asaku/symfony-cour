@@ -1,0 +1,4 @@
+AppBundle\Entity\Category:
+    category_{1..50}:
+        title: <name()>
+        content: "MUHAHAHAHAHAHAHAHA"
