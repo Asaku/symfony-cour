@@ -14,10 +14,7 @@ class ExampleListener
         if (!$entity instanceof Category) {
             return;
         }
-
-        die('yolo');
-
+        
         $entityManager = $args->getEntityManager();
-        // ... do something with the Product
     }
 }
