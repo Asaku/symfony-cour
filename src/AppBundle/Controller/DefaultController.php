@@ -38,7 +38,7 @@ class DefaultController extends Controller
             'route_params' => array()
         );
 
-        return $this->render('default/index.html.twig',
+        return $this->render('Default/index.html.twig',
             array(
                 'posts' => $posts,
                 'pagination' => $pagination,
@@ -74,7 +74,7 @@ class DefaultController extends Controller
             return $this->redirectToRoute('article_display', array('slug' => $slug));
         }
 
-        return $this->render('default/show.html.twig',
+        return $this->render('Default/show.html.twig',
             array(
                 'post' => $post,
                 'comments' => $comments,
@@ -94,7 +94,7 @@ class DefaultController extends Controller
         if (!$post)
             throw new EntityNotFoundException('haha');
 
-        $html = $this->render('default/show.html.twig',
+        $html = $this->render('Default/show.html.twig',
             array('post' => $post,)
         );
 
