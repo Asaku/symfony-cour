@@ -4,17 +4,23 @@ namespace AppBundle\EventListener;
 use AppBundle\Entity\Category;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 
+/**
+ * Class ExampleListener
+ * @package AppBundle\EventListener
+ */
 class ExampleListener
 {
+    /**
+     * @param LifecycleEventArgs $args
+     */
     public function postPersist(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
 
-        // only act on some "Product" entity
         if (!$entity instanceof Category) {
             return;
         }
-        
+
         $entityManager = $args->getEntityManager();
     }
 }
