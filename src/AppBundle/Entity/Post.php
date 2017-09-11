@@ -72,6 +72,9 @@ class Post
      */
     private $categories;
 
+    /**
+     * @var String $files
+     */
     public $files;
 
     /**

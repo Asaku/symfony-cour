@@ -4,6 +4,10 @@ namespace AppBundle\DataFixtures\ORM;
 
 use Hautelook\AliceBundle\Doctrine\DataFixtures\AbstractLoader;
 
+/**
+ * Class DataLoader
+ * @package AppBundle\DataFixtures\ORM
+ */
 class DataLoader extends AbstractLoader
 {
     /**

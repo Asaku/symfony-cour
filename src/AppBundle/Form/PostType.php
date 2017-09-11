@@ -52,6 +52,4 @@ class PostType extends AbstractType
     {
         return 'appbundle_post';
     }
-
-
 }
