@@ -90,7 +90,6 @@ class Post
         $this->categories = new ArrayCollection();
     }
 
-
     /**
      * Get id
      *

@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\EventListener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
@@ -10,7 +11,7 @@ use AppBundle\Entity\User;
  * Date: 25/01/2017
  * Time: 15:51
  */
-class EncoderUser
+class DecoderUser
 {
     /**
      * @param LifecycleEventArgs $args
