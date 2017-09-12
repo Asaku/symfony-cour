@@ -1,6 +1,11 @@
 <?php
+
 namespace AppBundle\Twig;
 
+/**
+ * Class AppExtension
+ * @package AppBundle\Twig
+ */
 class AppExtension extends \Twig_Extension
 {
     public function getFilters()

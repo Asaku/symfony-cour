@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Class DefaultController
@@ -57,7 +58,7 @@ class DefaultController extends Controller
             array('public' => true, 'slug' => $slug));
 
         if (!$post)
-            throw new EntityNotFoundException('haha');
+            throw new NotFoundHttpException('Aucun article');
 
         $comments = $em->getRepository('AppBundle:Comment')->findBy(
             array('post' => $post));

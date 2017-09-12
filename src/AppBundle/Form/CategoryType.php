@@ -6,6 +6,10 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class CategoryType
+ * @package AppBundle\Form
+ */
 class CategoryType extends AbstractType
 {
     /**
@@ -13,7 +17,9 @@ class CategoryType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title')->add('content')      ;
+        $builder
+            ->add('title')
+            ->add('content');
     }
     
     /**
@@ -33,6 +39,4 @@ class CategoryType extends AbstractType
     {
         return 'appbundle_category';
     }
-
-
 }
