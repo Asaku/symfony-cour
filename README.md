@@ -5,7 +5,7 @@ Support de cours pour symfony 2/3
 
 ```
 <VirtualHost *:80>
-    ServerName e-commerce.com
+    ServerName symfony-blog.fr
     DocumentRoot "C:/xampp/htdocs/blog/web"
     DirectoryIndex app_dev.php
     <Directory "C:/xampp/htdocs/blog/web">
