@@ -41,7 +41,7 @@ class DefaultController extends Controller
 
         return $this->render('Default/index.html.twig',
             array(
-                'posts' => $posts,
+                'posts' => $posts->getQuery()->getResult(),
                 'pagination' => $pagination,
                 'categories' => $categories
                 )

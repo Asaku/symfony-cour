@@ -33,7 +33,9 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
 
         $q->orderBy('post.dateCreated', 'DESC');
 
-        return new Paginator($q);
+        $t = new Paginator($q);
+
+        return $t;
     }
 
     /**
