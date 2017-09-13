@@ -47,7 +47,6 @@ class Category
         $this->dateCreated = new \DateTime();
     }
 
-
     /**
      * Get id
      *
