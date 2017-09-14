@@ -17,5 +17,5 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
-    mailer_user:        null
-    mailer_user_name:   null
+    mailer_user:        root@email.com
+    mailer_user_name:   root
