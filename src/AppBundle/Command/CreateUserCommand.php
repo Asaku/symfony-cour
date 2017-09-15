@@ -10,9 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class CreateUserCommand extends ContainerAwareCommand
 {
-    /**
-     *
-     */
+
     protected function configure()
     {
         $this
@@ -21,6 +19,7 @@ class CreateUserCommand extends ContainerAwareCommand
             ->setHelp("This command allows you to create users...")
         ;
     }
+
 
     /**
      * @param InputInterface $input
